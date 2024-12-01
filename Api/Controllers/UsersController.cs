@@ -1,6 +1,5 @@
 using Api.Data;
 using Api.Entites;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
