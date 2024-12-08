@@ -4,7 +4,6 @@ using Api.Data;
 using Api.DTOs;
 using Api.Entites;
 using Api.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
