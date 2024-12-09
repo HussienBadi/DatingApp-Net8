@@ -10,7 +10,7 @@ import { HomeComponent } from "./home/home.component";
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
-  imports: [NavComponent, HomeComponent]
+  imports: [NavComponent,RouterOutlet]
 })
 
 export class AppComponent implements OnInit {
@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   private accountService = inject(AccountService);
   ngOnInit(): void {
    this.setCurrentUser();
+
   }
 
   setCurrentUser(){
