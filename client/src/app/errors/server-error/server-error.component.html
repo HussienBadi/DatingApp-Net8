@@ -1,0 +1,8 @@
+<h4>This is Server error</h4>
+@if (error) {
+  <h5 class="text-danger">Error: {{error.message}}</h5>
+  <p class="font-weight-bold">Fllowing is stack trace:</p>
+  <code class="mt-5" style="color: orange;">
+    {{error.details}}
+  </code>
+}
