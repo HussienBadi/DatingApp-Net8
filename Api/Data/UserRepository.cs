@@ -20,7 +20,7 @@ public class UserRepository(DataContext context,IMapper mapper) : IUserRepositor
 
     public async Task<IEnumerable<MemberDto?>> GetMembersAsync()
     {
-        return await context.Users
+        return await context.Users.Where(u=>u.Gender =="male")
         .ProjectTo<MemberDto>(mapper.ConfigurationProvider)
         .ToListAsync();
     }

@@ -9,16 +9,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Api.Controllers
 {
-   
+   [Authorize]
     public class UsersController(IUserRepository userRepository) : BaseApiController
     {
-        [AllowAnonymous]
+        // [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers(){
             var users = await userRepository.GetMembersAsync();
             return Ok(users);
         }
-        // [Authorize]
+       
          [HttpGet("{username}")]
         public async Task<ActionResult<MemberDto>> GetUser(string username){
 

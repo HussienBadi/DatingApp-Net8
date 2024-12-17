@@ -1,1 +1,33 @@
-<p>member-list works!</p>
+<div class="row">
+  <mat-slide-toggle></mat-slide-toggle>
+    @for (member of members; track member.id) {
+      <div class="col-2">
+        <app-member-card [member]="member"></app-member-card>
+
+
+      </div>
+    }
+</div>
+
+
+<!-- <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (member of members; track member.id) {
+      <tr>
+        <th scope="row">{{member.id}}</th>
+        <td>{{member.knownAs}}</td>
+        <td>{{member.city}}</td>
+        <td><input type="text" value="{{member.country}}"></td>
+        <i class="fa fa-edit" (click)="editClick()"></i>
+      </tr>
+    }
+  </tbody>
+</table> -->
