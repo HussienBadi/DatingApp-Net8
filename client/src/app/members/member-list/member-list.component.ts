@@ -4,32 +4,28 @@ import { Member } from '../../_Models/Member';
 import { MemberCardComponent } from "../member-card/member-card.component";
 import { ToastrService } from 'ngx-toastr';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MemberTableComponent } from "../member-table/member-table.component";
 
 @Component({
   selector: 'app-member-list',
   standalone: true,
-  imports: [MemberCardComponent, MatSlideToggleModule, MemberTableComponent],
+  imports: [MemberCardComponent, MatSlideToggleModule],
   templateUrl: './member-list.component.html',
   styleUrl: './member-list.component.css'
 })
 export class MemberListComponent implements OnInit {
 
-  private memberService = inject(MemberService);
+   memberService = inject(MemberService);
   private toastr = inject(ToastrService)
-  members:Member[] = [];
 
   ngOnInit(): void {
-    this.loadMembers()
+   if(this.memberService.members().length === 0) this.loadMembers()
   }
 
   editClick(){
   this.toastr.success("hi")
   }
   loadMembers(){
-    this.memberService.getMembers().subscribe({
-      next:member => this.members = member
-    })
+    this.memberService.getMembers();
   }
 
 }
