@@ -1,4 +1,5 @@
 import { Photo } from "./Photo"
+import { UploadFile } from "./UploadFile"
 
 export interface Member {
   id: number
@@ -16,6 +17,7 @@ export interface Member {
   city: string
   country: string
   photos: Photo[]
+  uploadFiles: UploadFile[]
 }
 
 

@@ -20,7 +20,7 @@ public class UserRepository(DataContext context,IMapper mapper) : IUserRepositor
 
     public async Task<IEnumerable<MemberDto?>> GetMembersAsync()
     {
-        return await context.Users.Where(u=>u.Gender =="male")
+        return await context.Users
         .ProjectTo<MemberDto>(mapper.ConfigurationProvider)
         .ToListAsync();
     }
@@ -47,6 +47,7 @@ public class UserRepository(DataContext context,IMapper mapper) : IUserRepositor
     {
        return await context.SaveChangesAsync() > 0 ;
     }
+ 
 
     public void Update(AppUser user)
     {

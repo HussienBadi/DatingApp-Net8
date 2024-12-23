@@ -1,3 +1,4 @@
+using Api.Data.Migrations;
 using Api.DTOs;
 using Api.Entites;
 using Api.Extentions;
@@ -11,8 +12,11 @@ public class AutoMapperProfile : Profile
    {
      CreateMap<AppUser,MemberDto>()
      .ForMember(d=>d.Age,o=>o.MapFrom(s => s.DateOfBirth.CalculateAge()))
-     .ForMember(d => d.PhotoUrl,o => o.MapFrom(s => s.Photos.FirstOrDefault(p =>p.IsMain)!.Url));
+    .ForMember(d => d.PhotoUrl,o => o.MapFrom(s => s.Photos.FirstOrDefault(p =>p.IsMain)!.Url));
+
      CreateMap<Photo,PhotoDto>();
+
+     CreateMap<UploadFile,UploadFileDto>();
      
      CreateMap<MemberUpdateDto,AppUser>();
    }
