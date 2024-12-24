@@ -28,7 +28,7 @@ export class MemberService {
    return this.http.get<Member>(this.baseUrl + "users/" + username);
 
   }
- // تراجع
+
   updateMember(member:Member){
    return  this.http.put(this.baseUrl + 'users',member).pipe(
     tap(()=>{
