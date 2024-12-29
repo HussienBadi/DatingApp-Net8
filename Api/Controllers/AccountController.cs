@@ -36,7 +36,8 @@ namespace Api.Controllers
             {
                 Username = user.UserName,
                 Token = tokenService.CreateToken(user),
-                KnownAs = user.KnownAs
+                KnownAs = user.KnownAs,
+                Gender = user.Gender
             };
         }
 
@@ -46,7 +47,7 @@ namespace Api.Controllers
         {
 
             var user = await context.Users
-           .Include(p => p.Photos)
+            .Include(p => p.Photos)
             .FirstOrDefaultAsync(x => x.UserName == dto.UserName.ToLower());
 
             if (user == null) return Unauthorized("Invalid User Name");
@@ -64,7 +65,8 @@ namespace Api.Controllers
                 Username = user.UserName,
                 Token = tokenService.CreateToken(user),
                 photoUrl = user.Photos.FirstOrDefault(p => p.IsMain)?.Url,
-                KnownAs = user.KnownAs
+                KnownAs = user.KnownAs,
+                Gender = user.Gender
             };
 
         }
