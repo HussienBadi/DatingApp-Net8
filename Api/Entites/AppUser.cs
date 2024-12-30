@@ -20,15 +20,10 @@ public class AppUser
       public string? LookingFor { get; set; }
       public required string City { get; set; }
       public required string Country { get; set; }
-
       public List<Photo> Photos { get; set; } = [];
-
       public List<UploadFile> uploadFiles {get;set;} = [];
-
-//   public int GetAge(){
-
-//       return DateOfBirth.CalculateAge();
-//   }
+      public List<LikeUser> LikeByUser {get;set;} = [];
+      public List<LikeUser> LikedUsers {get;set;} = [];
 
 
 }

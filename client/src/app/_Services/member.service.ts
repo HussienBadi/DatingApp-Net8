@@ -7,6 +7,7 @@ import { Photo } from '../_Models/Photo';
 import { PaginatedResult } from '../_Models/Pagination';
 import { UserParams } from '../_Models/userParams';
 import { AccountService } from './account.service';
+import { setPaginatedResponse, setPaginationHeader } from './paginationHelper';
 
 @Injectable({
   providedIn: 'root'
@@ -27,22 +28,19 @@ export class MemberService {
   }
 
   getMembers(){
-
     const response = this.memberCash.get(Object.values(this.userPrams()).join('-'));
+     if (response) return setPaginatedResponse(response,this.pagintedResult);
 
-     if (response) return this.setPaginatedResponse(response);
-
-    let params = this.setPaginationHeader(this.userPrams().pageNumber,this.userPrams().pageSize);
+    let params = setPaginationHeader(this.userPrams().pageNumber,this.userPrams().pageSize);
 
     params = params.append('minAge',this.userPrams().minAge);
     params = params.append('maxAge',this.userPrams().maxAge);
     params = params.append('gender',this.userPrams().gender);
     params = params.append('orderBy',this.userPrams().orderBy);
 
-
     return this.http.get<Member[]>(this.baseUrl + "users",{observe:'response',params}).subscribe({
       next: response => {
-       this.setPaginatedResponse(response);
+       setPaginatedResponse(response,this.pagintedResult);
        this.memberCash.set(Object.values(this.userPrams()).join('-'),response);
       }
     })
@@ -50,22 +48,7 @@ export class MemberService {
 
   }
 
-  setPaginatedResponse(response:HttpResponse<Member[]>){
-    this.pagintedResult.set({
-      item:response.body as Member[],
-      pagination:JSON.parse(response.headers.get('Pagination')!)
-    })
-  }
 
-  setPaginationHeader(pageNumber?:number,pageSize?:number){
-    let params = new HttpParams();
-
-    if(pageNumber && pageSize){
-     params = params.append("pageNumber",pageNumber);
-     params = params.append("pageSize",pageSize);
-    }
-    return params;
-  }
 
   getMember(username:string){
 
